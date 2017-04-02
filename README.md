@@ -7,7 +7,7 @@ ioutils package for virtual-go
 
 # features
 
-- API compatible w/ native go ioutils package
+- API compatible w/ native [ioutil](https://golang.org/pkg/io/ioutil/) package
 - API exposed via interface
 - fake implementation to allow faking interactions
 
