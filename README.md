@@ -3,7 +3,7 @@
 
 # problem statement
 
-ioutils package for virtual-go
+ioutil package for virtual-go
 
 # features
 
