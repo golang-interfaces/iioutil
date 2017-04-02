@@ -1,10 +1,14 @@
 package vioutil
 
 import (
+	"bytes"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
+	"github.com/virtual-go/fs"
+	"github.com/virtual-go/fs/osfs"
 	"io/ioutil"
 	"os"
+	"path"
 	"runtime"
 )
 
@@ -16,17 +20,21 @@ var _ = Context("_VIOUtil", func() {
 	Context("New", func() {
 		It("should return Fs", func() {
 			/* arrange/act/assert */
-			Expect(New()).Should(Not(BeNil()))
+			Expect(New(new(fs.Fake))).
+				Should(Not(BeNil()))
 		})
 	})
 	Context("ReadDir", func() {
 		It("should return expected fileinfos", func() {
 			/* arrange */
-			providedDirName := wd
+			// use .opspec dir because it won't be modified during test
+			providedDirName := path.Join(wd, ".opspec")
 
 			expectedFileInfos, _ := ioutil.ReadDir(providedDirName)
 
-			objectUnderTest := New()
+			objectUnderTest := _VIOUtil{
+				fs: osfs.New(),
+			}
 
 			/* act */
 			actualFileinfos, actualErr := objectUnderTest.ReadDir(providedDirName)
@@ -44,7 +52,9 @@ var _ = Context("_VIOUtil", func() {
 
 			expectedBytes, _ := ioutil.ReadFile(providedFileName)
 
-			objectUnderTest := New()
+			objectUnderTest := _VIOUtil{
+				fs: osfs.New(),
+			}
 
 			/* act */
 			actualBytes, actualErr := objectUnderTest.ReadFile(providedFileName)
@@ -52,6 +62,34 @@ var _ = Context("_VIOUtil", func() {
 			/* assert */
 			Expect(actualBytes).To(Equal(expectedBytes))
 			Expect(actualErr).To(BeNil())
+		})
+	})
+	Context("WriteFile", func() {
+		It("should create expected file", func() {
+			/* arrange */
+			tempFile, err := ioutil.TempFile("", "dummyFile")
+			if nil != err {
+				panic(err)
+			}
+			providedFilename := tempFile.Name()
+
+			providedData := bytes.NewBufferString("dummy file content").Bytes()
+			providedPerm := os.FileMode(0777)
+
+			objectUnderTest := _VIOUtil{
+				fs: osfs.New(),
+			}
+
+			/* act */
+			objectUnderTest.WriteFile(providedFilename, providedData, providedPerm)
+
+			/* assert */
+			actualData, err := ioutil.ReadFile(providedFilename)
+			if nil != err {
+				panic(err)
+			}
+
+			Expect(actualData).To(Equal(providedData))
 		})
 	})
 })
