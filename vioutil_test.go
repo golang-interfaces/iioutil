@@ -4,12 +4,11 @@ import (
 	"bytes"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
-	"github.com/virtual-go/fs"
-	"github.com/virtual-go/fs/osfs"
 	"io/ioutil"
 	"os"
 	"path"
 	"runtime"
+  "github.com/golang-interfaces/vos"
 )
 
 var _ = Context("_VIOUtil", func() {
@@ -20,7 +19,7 @@ var _ = Context("_VIOUtil", func() {
 	Context("New", func() {
 		It("should return Fs", func() {
 			/* arrange/act/assert */
-			Expect(New(new(fs.Fake))).
+			Expect(New()).
 				Should(Not(BeNil()))
 		})
 	})
@@ -33,7 +32,7 @@ var _ = Context("_VIOUtil", func() {
 			expectedFileInfos, _ := ioutil.ReadDir(providedDirName)
 
 			objectUnderTest := _VIOUtil{
-				fs: osfs.New(),
+				vos: vos.New(),
 			}
 
 			/* act */
@@ -53,7 +52,7 @@ var _ = Context("_VIOUtil", func() {
 			expectedBytes, _ := ioutil.ReadFile(providedFileName)
 
 			objectUnderTest := _VIOUtil{
-				fs: osfs.New(),
+				vos: vos.New(),
 			}
 
 			/* act */
@@ -77,7 +76,7 @@ var _ = Context("_VIOUtil", func() {
 			providedPerm := os.FileMode(0777)
 
 			objectUnderTest := _VIOUtil{
-				fs: osfs.New(),
+				vos: vos.New(),
 			}
 
 			/* act */
