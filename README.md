@@ -3,12 +3,11 @@
 
 # problem statement
 
-ioutil package for virtual-go
+native [ioutil](https://golang.org/pkg/io/ioutil/) package exposed via interface
 
 # features
 
-- API compatible w/ native [ioutil](https://golang.org/pkg/io/ioutil/) package
-- API exposed via interface
+- API compatible w/ native [ioutil](https://golang.org/pkg/io/ioutil/) package exposed via interface
 - fake implementation to allow faking interactions
 
 > *Be advised: this project is currently at Major version zero. Per the
