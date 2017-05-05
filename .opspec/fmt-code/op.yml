@@ -21,6 +21,6 @@ run:
         echo "formatting code"
         govendor fmt +local
     dirs:
-      /go/src/github.com/virtual-go/vioutil: srcDir
+      /go/src/github.com/golang-interfaces/vioutil: srcDir
     image: { ref: 'golang:1.8' }
-    workDir: /go/src/github.com/virtual-go/vioutil
+    workDir: /go/src/github.com/golang-interfaces/vioutil

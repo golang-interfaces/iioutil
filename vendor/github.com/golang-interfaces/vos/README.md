@@ -1,14 +1,13 @@
-[![Build Status](https://travis-ci.org/virtual-go/fs.svg?branch=master)](https://travis-ci.org/virtual-go/fs)
-[![Coverage](https://codecov.io/gh/virtual-go/fs/branch/master/graph/badge.svg)](https://codecov.io/gh/virtual-go/fs)
+[![Build Status](https://travis-ci.org/golang-interfaces/vos.svg?branch=master)](https://travis-ci.org/golang-interfaces/vos)
+[![Coverage](https://codecov.io/gh/golang-interfaces/vos/branch/master/graph/badge.svg)](https://codecov.io/gh/golang-interfaces/vos)
 
 # problem statement
 
-golang package virtualizing fs interactions
+native [os package](https://golang.org/pkg/os/) exposed via interface
 
 # features
 
-- API compatible w/ native go fs interactions
-- API exposed via interface
+- API compatible w/ native [os package](https://golang.org/pkg/os/) exposed via interface
 - fake implementation to allow faking interactions
 
 > *Be advised: this project is currently at Major version zero. Per the
@@ -20,7 +19,7 @@ golang package virtualizing fs interactions
 
 for every release:
 
-- source code will be [tagged](https://github.com/virtual-go/fs/tags).
+- source code will be [tagged](https://github.com/golang-interfaces/vos/tags).
 
 # Versioning
 

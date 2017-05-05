@@ -9,5 +9,5 @@ import (
 
 func TestCli(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "virtual-go/vioutil")
+	RunSpecs(t, "golang-interfaces/vioutil")
 }
