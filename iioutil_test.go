@@ -1,4 +1,4 @@
-package vioutil
+package iioutil
 
 import (
 	"bytes"
@@ -11,7 +11,7 @@ import (
   "github.com/golang-interfaces/vos"
 )
 
-var _ = Context("_VIOUtil", func() {
+var _ = Context("_Iioutil", func() {
 	wd, err := os.Getwd()
 	if nil != err {
 		panic(err)
@@ -31,7 +31,7 @@ var _ = Context("_VIOUtil", func() {
 
 			expectedFileInfos, _ := ioutil.ReadDir(providedDirName)
 
-			objectUnderTest := _VIOUtil{
+			objectUnderTest := _Iioutil{
 				vos: vos.New(),
 			}
 
@@ -51,7 +51,7 @@ var _ = Context("_VIOUtil", func() {
 
 			expectedBytes, _ := ioutil.ReadFile(providedFileName)
 
-			objectUnderTest := _VIOUtil{
+			objectUnderTest := _Iioutil{
 				vos: vos.New(),
 			}
 
@@ -75,7 +75,7 @@ var _ = Context("_VIOUtil", func() {
 			providedData := bytes.NewBufferString("dummy file content").Bytes()
 			providedPerm := os.FileMode(0777)
 
-			objectUnderTest := _VIOUtil{
+			objectUnderTest := _Iioutil{
 				vos: vos.New(),
 			}
 

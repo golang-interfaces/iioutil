@@ -1,6 +1,6 @@
-package vioutil
+package iioutil
 
-//go:generate counterfeiter -o ./fake.go --fake-name Fake ./ VIOUtil
+//go:generate counterfeiter -o ./fake.go --fake-name Fake ./ Iioutil
 
 import (
 	"bytes"
@@ -11,7 +11,7 @@ import (
 )
 
 // virtual filesystem interface
-type VIOUtil interface {
+type Iioutil interface {
 	// ReadDir reads the directory named by dirname and returns
 	// a list of directory entries sorted by filename.
 	ReadDir(dirname string) ([]os.FileInfo, error)
@@ -28,13 +28,13 @@ type VIOUtil interface {
 	WriteFile(filename string, data []byte, perm os.FileMode) error
 }
 
-func New() VIOUtil {
-	return _VIOUtil{
+func New() Iioutil {
+	return _Iioutil{
 		vos: vos.New(),
 	}
 }
 
-type _VIOUtil struct {
+type _Iioutil struct {
   vos vos.VOS
 }
 
@@ -67,7 +67,7 @@ func (f byName) Len() int           { return len(f) }
 func (f byName) Less(i, j int) bool { return f[i].Name() < f[j].Name() }
 func (f byName) Swap(i, j int)      { f[i], f[j] = f[j], f[i] }
 
-func (this _VIOUtil) ReadDir(dirname string) ([]os.FileInfo, error) {
+func (this _Iioutil) ReadDir(dirname string) ([]os.FileInfo, error) {
 	f, err := this.vos.Open(dirname)
 	if err != nil {
 		return nil, err
@@ -81,7 +81,7 @@ func (this _VIOUtil) ReadDir(dirname string) ([]os.FileInfo, error) {
 	return list, nil
 }
 
-func (this _VIOUtil) ReadFile(filename string) ([]byte, error) {
+func (this _Iioutil) ReadFile(filename string) ([]byte, error) {
 	f, err := this.vos.Open(filename)
 	if err != nil {
 		return nil, err
@@ -105,7 +105,7 @@ func (this _VIOUtil) ReadFile(filename string) ([]byte, error) {
 	return readAll(f, n+bytes.MinRead)
 }
 
-func (this _VIOUtil) WriteFile(filename string, data []byte, perm os.FileMode) error {
+func (this _Iioutil) WriteFile(filename string, data []byte, perm os.FileMode) error {
 	f, err := this.vos.OpenFile(filename, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, perm)
 	if err != nil {
 		return err
