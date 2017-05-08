@@ -1,4 +1,4 @@
-package vioutil
+package iioutil
 
 import (
 	. "github.com/onsi/ginkgo"
@@ -9,5 +9,5 @@ import (
 
 func TestCli(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "golang-interfaces/vioutil")
+	RunSpecs(t, "golang-interfaces/iioutil")
 }

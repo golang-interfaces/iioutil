@@ -21,6 +21,6 @@ run:
         echo "generating fakes"
         govendor generate +local
     dirs:
-      /go/src/github.com/golang-interfaces/vioutil: srcDir
+      /go/src/github.com/golang-interfaces/iioutil: srcDir
     image: { ref: 'golang:1.8' }
-    workDir: /go/src/github.com/golang-interfaces/vioutil
+    workDir: /go/src/github.com/golang-interfaces/iioutil
