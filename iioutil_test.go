@@ -8,7 +8,7 @@ import (
 	"os"
 	"path"
 	"runtime"
-  "github.com/golang-interfaces/vos"
+  "github.com/golang-interfaces/ios"
 )
 
 var _ = Context("_Iioutil", func() {
@@ -32,7 +32,7 @@ var _ = Context("_Iioutil", func() {
 			expectedFileInfos, _ := ioutil.ReadDir(providedDirName)
 
 			objectUnderTest := _Iioutil{
-				vos: vos.New(),
+				ios: ios.New(),
 			}
 
 			/* act */
@@ -52,7 +52,7 @@ var _ = Context("_Iioutil", func() {
 			expectedBytes, _ := ioutil.ReadFile(providedFileName)
 
 			objectUnderTest := _Iioutil{
-				vos: vos.New(),
+				ios: ios.New(),
 			}
 
 			/* act */
@@ -76,7 +76,7 @@ var _ = Context("_Iioutil", func() {
 			providedPerm := os.FileMode(0777)
 
 			objectUnderTest := _Iioutil{
-				vos: vos.New(),
+				ios: ios.New(),
 			}
 
 			/* act */
