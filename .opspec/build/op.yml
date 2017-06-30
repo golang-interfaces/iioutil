@@ -19,7 +19,11 @@ run:
     - op:
         pkg: { ref: test }
         inputs: { srcDir }
-        outputs: { srcDir }
+        outputs: { srcDir, coverprofile }
     - op:
-        pkg: { ref: publish-coverage }
-        inputs: { gitBranch, srcDir }
+        pkg: { ref: github.com/opspec-pkgs/git.resolve-commit#1.0.0 }
+        inputs: { dotGitDir: $(srcDir)/.git }
+        outputs: { gitCommit: commit }
+    - op:
+        pkg: { ref: github.com/opspec-pkgs/codecov.upload#1.0.0 }
+        inputs: { gitBranch, gitCommit, token: 471b867d-7e8a-48f3-9043-10c3bc45bdc7, report: $(coverprofile) }

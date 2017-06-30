@@ -29,6 +29,9 @@ run:
           inputs: { srcDir }
           outputs: { srcDir }
     - op:
-        pkg: { ref: test-coverage }
-        inputs: { srcDir }
-        outputs: { srcDir }
+        pkg: { ref: github.com/opspec-pkgs/golang.aggregate-coverprofiles#1.0.0 }
+        inputs: { src: $(srcDir) }
+        outputs: { coverprofile }
+    - op:
+        pkg: { ref: github.com/opspec-pkgs/golang.coverprofile.assert#1.0.0 }
+        inputs: { coverprofile, minCoverage: 51 }
