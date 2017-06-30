@@ -9,6 +9,9 @@ outputs:
   srcDir:
     dir:
       description: directory containing the projects source code
+  coverprofile:
+    file:
+      description: aggregate coverprofile
 run:
   serial:
     - op:
