@@ -8,7 +8,6 @@ import (
 	"os"
 	"path"
 	"runtime"
-  "github.com/golang-interfaces/ios"
 )
 
 var _ = Context("_Iioutil", func() {
@@ -23,6 +22,21 @@ var _ = Context("_Iioutil", func() {
 				Should(Not(BeNil()))
 		})
 	})
+	Context("ReadAll", func() {
+		It("should return expected results", func() {
+			/* arrange */
+			expectedBytes := []byte{2, 3, 10}
+
+			objectUnderTest := _IIOUtil{}
+
+			/* act */
+			actualBytes, actualErr := objectUnderTest.ReadAll(bytes.NewReader(expectedBytes))
+
+			/* assert */
+			Expect(actualBytes).To(Equal(expectedBytes))
+			Expect(actualErr).To(BeNil())
+		})
+	})
 	Context("ReadDir", func() {
 		It("should return expected fileinfos", func() {
 			/* arrange */
@@ -31,9 +45,7 @@ var _ = Context("_Iioutil", func() {
 
 			expectedFileInfos, _ := ioutil.ReadDir(providedDirName)
 
-			objectUnderTest := _Iioutil{
-				ios: ios.New(),
-			}
+			objectUnderTest := _IIOUtil{}
 
 			/* act */
 			actualFileinfos, actualErr := objectUnderTest.ReadDir(providedDirName)
@@ -51,9 +63,7 @@ var _ = Context("_Iioutil", func() {
 
 			expectedBytes, _ := ioutil.ReadFile(providedFileName)
 
-			objectUnderTest := _Iioutil{
-				ios: ios.New(),
-			}
+			objectUnderTest := _IIOUtil{}
 
 			/* act */
 			actualBytes, actualErr := objectUnderTest.ReadFile(providedFileName)
@@ -75,9 +85,7 @@ var _ = Context("_Iioutil", func() {
 			providedData := bytes.NewBufferString("dummy file content").Bytes()
 			providedPerm := os.FileMode(0777)
 
-			objectUnderTest := _Iioutil{
-				ios: ios.New(),
-			}
+			objectUnderTest := _IIOUtil{}
 
 			/* act */
 			objectUnderTest.WriteFile(providedFilename, providedData, providedPerm)
